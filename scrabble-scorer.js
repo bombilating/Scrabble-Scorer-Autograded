@@ -21,8 +21,8 @@ function oldScrabbleScorer(word) {
 	  for (pointValue in oldPointStructure) {
  
 		 if (oldPointStructure[pointValue].includes(word[i])) {
-			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
-         pointValue = Number(pointValue)
+			letterPoints += `Points for '${word[i]}': ${pointValue}\n`;
+         pointValue = Number(pointValue);
          score += pointValue;
 		 }
  
@@ -44,7 +44,7 @@ function simpleScorer(word) {
    for(i=0; i<word.length; i++) {
       letterPoints++;
    }
-   return letterPoints
+   return letterPoints;
 };
 
 function vowelBonusScorer(word) {
@@ -58,7 +58,7 @@ function vowelBonusScorer(word) {
          letterPoints++;
       }
    }
-   return letterPoints
+   return letterPoints;
 };
 
 function scrabbleScorer(word) {
@@ -87,13 +87,13 @@ const scoringAlgorithms = [{
 function scorerPrompt() {
    scoringChoice = Number(input.question("Which scoring algorithm would you like to use?\n\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0 , 1 , or 2: "));
    while(scoringChoice < 0 || scoringChoice > 2) {
-      scoringChoice = Number(input.question("That is an invalid number. Please try again: "))
+      scoringChoice = Number(input.question("That is an invalid number. Please try again: "));
    }
    return scoringAlgorithms[scoringChoice].scorerFunction;
 }
 
 function transform(oldPointStructure) {
-   let transformedPointStructure = {}
+   let transformedPointStructure = {};
    for (point in oldPointStructure) {
       for(i=0;i<oldPointStructure[point].length;i++) {
          transformedPointStructure[oldPointStructure[point][i].toLowerCase()] = Number(point);
@@ -105,11 +105,10 @@ function transform(oldPointStructure) {
 let newPointStructure = transform(oldPointStructure);
 
 function runProgram() {
-   
    let word = initialPrompt();
    let scoringChoice = scorerPrompt();
    let score = scoringChoice(word);
-   console.log(`You scored ${score} points for the word '${word}'`)
+   console.log(`You scored ${score} points for the word '${word}'`);
 }
 
 // Don't write any code below this line //
